@@ -51,22 +51,22 @@ export const theme = createTheme({
     },
   },
   typography: {
-    fontFamily: ['Lora', 'sans-serif'].join(','),
+    fontFamily: ['Nunito', 'sans-serif'].join(','),
     fontSize: 11,
     h1: {
-      fontFamily: ['Poppins', 'sans-serif'].join(','),
+      fontFamily: ['Amatic SC', 'sans-serif'].join(','),
       fontSize: 48,
     },
     h2: {
-      fontFamily: ['Poppins', 'sans-serif'].join(','),
+      fontFamily: ['Amatic SC', 'sans-serif'].join(','),
       fontSize: 36,
     },
     h3: {
-      fontFamily: ['Poppins', 'sans-serif'].join(','),
+      fontFamily: ['Amatic SC', 'sans-serif'].join(','),
       fontSize: 20,
     },
     h4: {
-      fontFamily: ['Poppins', 'sans-serif'].join(','),
+      fontFamily: ['Amatic SC', 'sans-serif'].join(','),
       fontSize: 14,
     },
   }

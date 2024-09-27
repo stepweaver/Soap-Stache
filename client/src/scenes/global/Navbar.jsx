@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { Badge, Box, IconButton } from '@mui/material';
+import { Badge, Box, IconButton, Typography } from '@mui/material';
 import {
   PersonOutline,
   ShoppingBagOutlined,
@@ -38,9 +38,23 @@ const Navbar = () => {
           onClick={() => navigate('/')}
           sx={{ '&:hover': { cursor: 'pointer' } }}
           color={shades.secondary[500]}
+          display='flex'
+          alignItems='center'
         >
-          <img src={logo} alt='logo' width='100px' />
-          Soap Stache
+          <img
+            src={logo}
+            alt='logo'
+            width='60px'
+            style={{ marginRight: '10px' }}
+          />
+          <Typography
+            variant='h2'
+            component='span'
+            fontWeight='bold'
+            sx={{ textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)', letterSpacing: '2px' }}
+          >
+            Soap Stache
+          </Typography>
         </Box>
         <Box
           display='flex'
