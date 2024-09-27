@@ -53,7 +53,9 @@ const CartMenu = () => {
         <Box padding='30px' overflow='auto' height='100%'>
           {/* Header */}
           <FlexBox mb='15px'>
-            <Typography variant='h2' fontWeight='bold'>SHOPPING BAG ({cart.length})</Typography>
+            <Typography variant='h2' fontWeight='bold'>
+              SHOPPING BAG ({cart.length})
+            </Typography>
             <IconButton onClick={() => dispatch(setIsCartOpen({}))}>
               <CloseIcon />
             </IconButton>
@@ -100,6 +102,7 @@ const CartMenu = () => {
                         >
                           <RemoveIcon />
                         </IconButton>
+                        <Typography>{item.count}</Typography>
                         <IconButton
                           onClick={() =>
                             dispatch(increaseCount({ id: item.id }))
@@ -107,7 +110,6 @@ const CartMenu = () => {
                         >
                           <AddIcon />
                         </IconButton>
-                        <Typography>{item.count}</Typography>
                       </Box>
                       {/* Price */}
                       <Typography fontWeight='bold'>
