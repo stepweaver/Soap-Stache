@@ -16,14 +16,10 @@ const Item = ({ item, width }) => {
     palette: { neutral },
   } = useTheme();
 
-  const { category, price, name, image } = item.attributes;
+  const { category, price, name, image } = item;
   const {
-    data: {
-      attributes: {
-        formats: {
-          medium: { url },
-        },
-      },
+    formats: {
+      medium: { url },
     },
   } = image;
 
@@ -34,14 +30,19 @@ const Item = ({ item, width }) => {
         onMouseOver={() => setIsHovered(true)}
         onMouseOut={() => setIsHovered(false)}
       >
-        <img
-          alt={item.name}
-          width='300px'
-          height='400px'
-          src={`http://localhost:1337${url}`}
-          onClick={() => navigate(`/item/${item.id}`)}
-          style={{ cursor: 'pointer' }}
-        />
+        <Box width='300px' height='300px' overflow='hidden'>
+          <img
+            alt={item.name}
+            src={`http://localhost:1337${url}`}
+            onClick={() => navigate(`/item/${item.id}`)}
+            style={{
+              cursor: 'pointer',
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover',
+            }}
+          />
+        </Box>
         <Box
           display={isHovered ? 'block' : 'none'}
           position='absolute'
