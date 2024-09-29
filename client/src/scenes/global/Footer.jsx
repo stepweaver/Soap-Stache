@@ -56,9 +56,8 @@ const Footer = () => {
         <Typography variant='h3' fontWeight='bold' mb='30px'>
             Contact Us
           </Typography>
-          <Typography mb='30px'>50 North Whatever Blvd, Muskegon, MI 49445</Typography> 
+          <Typography mb='30px'>1432 East White Lake Drive<br />Twin Lake, MI 49457</Typography> 
           <Typography mb='30px'>Email: thesoapstache@gmail.com</Typography>
-          <Typography mb='30px'>(222) 333-4444</Typography>
         </Box>
       </Box>
     </Box>
