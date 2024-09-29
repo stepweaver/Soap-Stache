@@ -52,22 +52,22 @@ export const theme = createTheme({
   },
   typography: {
     fontFamily: ['Nunito', 'sans-serif'].join(','),
-    fontSize: 11,
+    fontSize: 14,
     h1: {
       fontFamily: ['Amatic SC', 'sans-serif'].join(','),
-      fontSize: 48,
+      fontSize: 56,
     },
     h2: {
       fontFamily: ['Amatic SC', 'sans-serif'].join(','),
-      fontSize: 36,
+      fontSize: 44,
     },
     h3: {
       fontFamily: ['Amatic SC', 'sans-serif'].join(','),
-      fontSize: 20,
+      fontSize: 24,
     },
     h4: {
       fontFamily: ['Amatic SC', 'sans-serif'].join(','),
-      fontSize: 14,
+      fontSize: 18,
     },
   }
 });
