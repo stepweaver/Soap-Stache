@@ -502,7 +502,7 @@ export interface ApiItemItem extends Struct.CollectionTypeSchema {
     price: Schema.Attribute.Decimal;
     image: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     category: Schema.Attribute.Enumeration<
-      ['topRatred', 'bestSeller', 'newArrival']
+      ['topRated', 'bestSeller', 'newArrival']
     >;
     createdAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
