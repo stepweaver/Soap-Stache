@@ -1,5 +1,5 @@
 import heroImage from '../../assets/Brewed Awakening.jpg';
-import { Box, useMediaQuery } from '@mui/material';
+import { Box } from '@mui/material';
 
 const HeroImage = () => {
 
