@@ -17,11 +17,7 @@ const Item = ({ item, width }) => {
   } = useTheme();
 
   const { category, price, name, image } = item;
-  const {
-    formats: {
-      medium: { url },
-    },
-  } = image;
+  const { url } = image.formats.medium;
 
   return (
     <Box width={width}>
@@ -34,7 +30,7 @@ const Item = ({ item, width }) => {
           <img
             alt={item.name}
             src={`http://localhost:1337${url}`}
-            onClick={() => navigate(`/item/${item.id}`)}
+            onClick={() => navigate(`/item/${item.documentId}`)}
             style={{
               cursor: 'pointer',
               width: '100%',
@@ -66,7 +62,6 @@ const Item = ({ item, width }) => {
                 <AddIcon />
               </IconButton>
             </Box>
-            {/* Button */}
             <Button
               onClick={() => {
                 dispatch(addToCart({ item: { ...item, count } }));
