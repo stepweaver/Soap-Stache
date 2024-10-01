@@ -72,11 +72,17 @@ const ItemDetails = () => {
           </Box>
 
           <Box m='65px 0 25px 0'>
-            <Typography variant='h3' fontWeight='bold' sx={{ fontSize: '2rem' }}>
+            <Typography
+              variant='h3'
+              fontWeight='bold'
+              sx={{ fontSize: '2rem' }}
+            >
               {item?.name}
             </Typography>
             <Typography>${item?.price}</Typography>
-            <Typography sx={{ mt: '20px' }}>{item?.shortDescription}</Typography>
+            <Typography sx={{ mt: '20px' }}>
+              {item?.shortDescription}
+            </Typography>
           </Box>
 
           <Box display='flex' alignItems='center' minHeight='50px'>
@@ -103,7 +109,10 @@ const ItemDetails = () => {
                 minWidth: '150px',
                 padding: '10px 40px',
               }}
-              onClick={() => dispatch(addToCart({ item: { ...item, count } }))}
+              onClick={() => {
+                dispatch(addToCart({ item: { ...item, count } }));
+                setCount(1);
+              }}
             >
               ADD TO CART
             </Button>

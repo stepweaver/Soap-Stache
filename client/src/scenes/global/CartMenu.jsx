@@ -29,6 +29,12 @@ const CartMenu = () => {
     return total + item.count * item.price;
   }, 0);
 
+  const handleOverlayClick = (e) => {
+    if (e.target === e.currentTarget) {
+      dispatch(setIsCartOpen({}));
+    }
+  };
+
   return (
     // Overlay
     <Box
@@ -41,6 +47,7 @@ const CartMenu = () => {
       left='0'
       top='0'
       overflow='auto'
+      onClick={handleOverlayClick}
     >
       {/* Modal */}
       <Box
@@ -78,9 +85,7 @@ const CartMenu = () => {
                   <Box flex='1 1 60%'>
                     {/* Item Name */}
                     <FlexBox mb='5px'>
-                      <Typography fontWeight='bold'>
-                        {item.name}
-                      </Typography>
+                      <Typography fontWeight='bold'>{item.name}</Typography>
                       <IconButton
                         onClick={() =>
                           dispatch(removeFromCart({ id: item.id }))
@@ -89,7 +94,9 @@ const CartMenu = () => {
                         <CloseIcon />
                       </IconButton>
                     </FlexBox>
-                    <Typography fontSize='16px'>{item.shortDescription}</Typography>
+                    <Typography fontSize='16px'>
+                      {item.shortDescription}
+                    </Typography>
                     {/* Amount */}
                     <FlexBox m='15px 0'>
                       <Box
