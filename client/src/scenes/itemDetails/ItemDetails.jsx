@@ -1,4 +1,4 @@
-import { Box, Button, IconButton, Typography } from '@mui/material';
+import { Box, Button, IconButton, Typography, Snackbar } from '@mui/material';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import { useParams } from 'react-router-dom';
@@ -18,6 +18,7 @@ const ItemDetails = () => {
   const [count, setCount] = useState(1);
   const [item, setItem] = useState(null);
   const [items, setItems] = useState([]);
+  const [openSnackbar, setOpenSnackbar] = useState(false);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -49,6 +50,12 @@ const ItemDetails = () => {
     getItem();
     getItems();
   }, [itemId]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  const handleAddToCart = () => {
+    dispatch(addToCart({ item: { ...item, count } }));
+    setCount(1);
+    setOpenSnackbar(true);
+  };
 
   return (
     <Box width='80%' m='80px auto'>
@@ -109,10 +116,7 @@ const ItemDetails = () => {
                 minWidth: '150px',
                 padding: '10px 40px',
               }}
-              onClick={() => {
-                dispatch(addToCart({ item: { ...item, count } }));
-                setCount(1);
-              }}
+              onClick={handleAddToCart}
             >
               ADD TO CART
             </Button>
@@ -146,7 +150,7 @@ const ItemDetails = () => {
 
       {/* Related Products */}
       <Box mt='50px' width='100%'>
-        <Typography variant='h3' fontWeight='bold'>
+        <Typography variant='h3' fontWeight='bold' sx={{ fontSize: '2rem' }}>
           Related Products
         </Typography>
         <Box
@@ -161,6 +165,27 @@ const ItemDetails = () => {
           ))}
         </Box>
       </Box>
+      <Snackbar
+        open={openSnackbar}
+        autoHideDuration={3000}
+        onClose={() => setOpenSnackbar(false)}
+        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+        ContentProps={{
+          sx: {
+            mt: '50px',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            fontSize: '1.50rem',
+            fontWeight: 'bold',
+            backgroundColor: shades.primary[300],
+            color: 'white',
+            borderRadius: '5px',
+            padding: '10px 20px',
+          },
+        }}
+        message='Item added to cart'
+      />
     </Box>
   );
 };

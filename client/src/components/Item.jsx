@@ -1,6 +1,13 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { IconButton, Box, Typography, useTheme, Button } from '@mui/material';
+import {
+  IconButton,
+  Box,
+  Typography,
+  useTheme,
+  Button,
+  Snackbar,
+} from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import { shades } from '../theme';
@@ -12,12 +19,19 @@ const Item = ({ item, width }) => {
   const dispatch = useDispatch();
   const [count, setCount] = useState(1);
   const [isHovered, setIsHovered] = useState(false);
+  const [openSnackbar, setOpenSnackbar] = useState(false);
   const {
     palette: { neutral },
   } = useTheme();
 
   const { category, price, name, image } = item;
   const { url } = image.formats.medium;
+
+  const handleAddToCart = () => {
+    dispatch(addToCart({ item: { ...item, count } }));
+    setCount(1);
+    setOpenSnackbar(true);
+  };
 
   return (
     <Box width={width}>
@@ -63,10 +77,7 @@ const Item = ({ item, width }) => {
               </IconButton>
             </Box>
             <Button
-              onClick={() => {
-                dispatch(addToCart({ item: { ...item, count } }));
-                setCount(1);
-              }}
+              onClick={handleAddToCart}
               sx={{ backgroundColor: shades.primary[300], color: 'white' }}
             >
               Add to Cart
@@ -83,6 +94,27 @@ const Item = ({ item, width }) => {
         <Typography>{name}</Typography>
         <Typography fontWeight='bold'>${price}</Typography>
       </Box>
+      <Snackbar
+        open={openSnackbar}
+        autoHideDuration={3000}
+        onClose={() => setOpenSnackbar(false)}
+        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+        ContentProps={{
+          sx: {
+            mt: '50px',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            fontSize: '1.50rem',
+            fontWeight: 'bold',
+            backgroundColor: shades.primary[300],
+            color: 'white',
+            borderRadius: '5px',
+            padding: '10px 20px',
+          },
+        }}
+        message='Item added to cart'
+      />
     </Box>
   );
 };
