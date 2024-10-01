@@ -65,6 +65,7 @@ const Item = ({ item, width }) => {
             <Button
               onClick={() => {
                 dispatch(addToCart({ item: { ...item, count } }));
+                setCount(1);
               }}
               sx={{ backgroundColor: shades.primary[300], color: 'white' }}
             >

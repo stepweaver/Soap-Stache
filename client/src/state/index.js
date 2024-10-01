@@ -18,9 +18,9 @@ const cartSlice = createSlice({
         (item) => item.id === action.payload.item.id
       );
       if (existingItem) {
-        existingItem.count++;
+        existingItem.count += action.payload.item.count;
       } else {
-        state.cart = [...state.cart, { ...action.payload.item, count: 1 }];
+        state.cart = [...state.cart, { ...action.payload.item }];
       }
     },
     removeFromCart: (state, action) => {
@@ -56,6 +56,5 @@ export const {
   decreaseCount,
   setIsCartOpen,
 } = cartSlice.actions;
-
 
 export default cartSlice.reducer;

@@ -26,7 +26,7 @@ const CartMenu = () => {
   const isCartOpen = useSelector((state) => state.cart.isCartOpen);
 
   const totalPrice = cart.reduce((total, item) => {
-    return total + item.count * item.price; // Updated to access price directly
+    return total + item.count * item.price;
   }, 0);
 
   return (
