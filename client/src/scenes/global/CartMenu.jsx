@@ -26,8 +26,9 @@ const CartMenu = () => {
   const isCartOpen = useSelector((state) => state.cart.isCartOpen);
 
   const totalPrice = cart.reduce((total, item) => {
-    return total + item.count * item.attributes.price;
+    return total + item.count * item.price; // Updated to access price directly
   }, 0);
+
   return (
     // Overlay
     <Box
@@ -63,21 +64,22 @@ const CartMenu = () => {
           {/* Cart List */}
           <Box>
             {cart.map((item) => (
-              <Box key={`${item.attributes.name}-${item.id}`}>
+              <Box key={`${item.name}-${item.id}`}>
                 <FlexBox p='15px 0'>
                   <Box flex='1 1 40%'>
                     <img
                       alt={item?.name}
-                      width='23px'
-                      height='164px'
-                      src={`http://localhost:1337${item?.attributes?.image?.data?.attributes?.formats?.medium?.url}`} // TODO: This won't work. Need to account for different image sizes. Create a helper function to get the image URL.
+                      width='90%'
+                      height='auto'
+                      src={`http://localhost:1337${item?.image?.formats?.medium?.url}`}
+                      style={{ objectFit: 'cover' }}
                     />
                   </Box>
                   <Box flex='1 1 60%'>
                     {/* Item Name */}
                     <FlexBox mb='5px'>
                       <Typography fontWeight='bold'>
-                        {item.attributes.name}
+                        {item.name}
                       </Typography>
                       <IconButton
                         onClick={() =>
@@ -87,7 +89,7 @@ const CartMenu = () => {
                         <CloseIcon />
                       </IconButton>
                     </FlexBox>
-                    <Typography fontSize='16px'>{item.attributes.shortDescription}</Typography>
+                    <Typography fontSize='16px'>{item.shortDescription}</Typography>
                     {/* Amount */}
                     <FlexBox m='15px 0'>
                       <Box
@@ -113,7 +115,7 @@ const CartMenu = () => {
                       </Box>
                       {/* Price */}
                       <Typography fontWeight='bold'>
-                        ${item.attributes.price}
+                        ${item.price * item.count}
                       </Typography>
                     </FlexBox>
                   </Box>

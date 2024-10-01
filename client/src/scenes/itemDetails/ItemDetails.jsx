@@ -72,7 +72,7 @@ const ItemDetails = () => {
           </Box>
 
           <Box m='65px 0 25px 0'>
-            <Typography variant='h3' fontWeight='bold'>
+            <Typography variant='h3' fontWeight='bold' sx={{ fontSize: '2rem' }}>
               {item?.name}
             </Typography>
             <Typography>${item?.price}</Typography>
