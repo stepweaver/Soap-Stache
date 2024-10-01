@@ -53,18 +53,18 @@ const ItemDetails = () => {
   return (
     <Box width='80%' m='80px auto'>
       <Box display='flex' flexWrap='wrap' columnGap='40px'>
-        {/* IMAGES */}
+        {/* Image */}
         <Box flex='1 1 40%' mb='40px'>
           <img
             alt={item?.name}
             width='100%'
-            height='100%'
+            height='auto'
             src={`http://localhost:1337${item?.image?.formats?.medium?.url}`}
-            style={{ objectFit: 'contain' }}
+            style={{ objectFit: 'contain', maxHeight: '500px' }}
           />
         </Box>
 
-        {/* ACTIONS */}
+        {/* Actions */}
         <Box flex='1 1 50%' mb='40px'>
           <Box display='flex' justifyContent='space-between'>
             <Box>Home/Item</Box>
@@ -72,11 +72,11 @@ const ItemDetails = () => {
           </Box>
 
           <Box m='65px 0 25px 0'>
-            <Typography variant='h3'>{item?.name}</Typography>
-            <Typography>${item?.price}</Typography>
-            <Typography sx={{ mt: '20px' }}>
-              {item?.longDescription}
+            <Typography variant='h3' fontWeight='bold'>
+              {item?.name}
             </Typography>
+            <Typography>${item?.price}</Typography>
+            <Typography sx={{ mt: '20px' }}>{item?.shortDescription}</Typography>
           </Box>
 
           <Box display='flex' alignItems='center' minHeight='50px'>
@@ -113,12 +113,17 @@ const ItemDetails = () => {
               <FavoriteBorderOutlinedIcon />
               <Typography sx={{ ml: '5px' }}>ADD TO WISHLIST</Typography>
             </Box>
-            <Typography>CATEGORIES: {item?.category}</Typography>
+            <Typography>
+              CATEGORIES:{' '}
+              {item?.category
+                .replace(/([A-Z])/g, ' $1')
+                .replace(/^./, (str) => str.toUpperCase())}
+            </Typography>
           </Box>
         </Box>
       </Box>
 
-      {/* INFORMATION */}
+      {/* Information */}
       <Box m='20px 0'>
         <Tabs value={value} onChange={handleChange}>
           <Tab label='DESCRIPTION' value='description' />
@@ -126,13 +131,11 @@ const ItemDetails = () => {
         </Tabs>
       </Box>
       <Box display='flex' flexWrap='wrap' gap='15px'>
-        {value === 'description' && (
-          <div>{item?.longDescription}</div>
-        )}
+        {value === 'description' && <div>{item?.longDescription}</div>}
         {value === 'reviews' && <div>reviews</div>}
       </Box>
 
-      {/* RELATED ITEMS */}
+      {/* Related Products */}
       <Box mt='50px' width='100%'>
         <Typography variant='h3' fontWeight='bold'>
           Related Products
